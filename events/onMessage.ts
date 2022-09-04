@@ -38,23 +38,6 @@ export const onMessage = async (
             }
         }
     }
-    /*switch (command) {
-        case "ping":
-            reply = "Pong!";
-            break;
-        case "pong":
-            reply = "Ping?";
-            break;
-        case "say":
-            reply = args.join(" ");
-            break;
-        case "amiamod":
-            reply = isMod
-                ? `Yes, @${userState["display-name"]}. You are a mod!`
-                : `No, @${userState["display-name"]}.`;
-            break;
-    }*/
-
     if (reply === "" || typeof config.account["identity"] === "undefined") return;
 
     await client.say(channel, reply);

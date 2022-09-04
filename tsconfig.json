@@ -4,6 +4,7 @@
     "module": "commonjs",
     "lib": ["ES2021"],
     "outDir": "dist",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "allowJs": true,
@@ -18,6 +19,7 @@
         "@utils/*": ["./utils/*"],
         "@interfaces/*": ["./interfaces/*"],
         "@commands/*": ["./commands/*"],
+        "@libs/*": ["./libs/*"],
     },
     "moduleResolution": "node",
 
