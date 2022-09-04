@@ -2,18 +2,15 @@
   "name": "twitch-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "main.ts",
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/main.js\"",
-    "start": "ts-node ./main.ts",
-    "build": "tsc"
+    "start": "ts-node main.ts"
   },
   "author": "Amine Ouhani",
   "dependencies": {
     "dotenv": "^16.0.2",
     "tmi.js": "^1.8.5"
   },
-  "type":"module",
   "devDependencies": {
     "@types/node": "^18.7.14",
     "@types/tmi.js": "^1.8.1",
