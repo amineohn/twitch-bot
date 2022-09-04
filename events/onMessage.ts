@@ -4,6 +4,8 @@ import Config from "../utils/config";
 import fs from "fs";
 // @ts-ignore
 import {ICommand, ListCommands} from "@/interfaces";
+// @ts-ignore
+import {Command} from "@/types";
 const config = new Config();
 const client = new tmi.Client(config.account);
 
@@ -25,11 +27,6 @@ export const onMessage = async (
     console.log(`* got: command - "${command}", arguments: "${args}"`);
 
     let reply = "";
-    type Command = {
-        name: string;
-        modOnly: boolean;
-        command: ICommand[];
-    } | string[];
     const commands: Command = await fs.promises.readdir("./commands");
     for (const commandFile of commands) {
         const command: ListCommands = await import(`../commands/${commandFile}`);

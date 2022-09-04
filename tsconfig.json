@@ -17,6 +17,7 @@
         "@events/*": ["./events/*"],
         "@utils/*": ["./utils/*"],
         "@interfaces/*": ["./interfaces/*"],
+        "@commands/*": ["./commands/*"],
     },
     "moduleResolution": "node",
 
