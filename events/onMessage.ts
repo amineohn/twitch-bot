@@ -30,6 +30,8 @@ export const onMessage = async (
     const commands: Command = await fs.promises.readdir("./commands");
     for (const commandFile of commands) {
         const command: ListCommands = await import(`../commands/${commandFile}`);
+        // @ts-ignore
+
         if (command?.name === command) {
             if (command.modOnly && !isMod) {
                 reply = `Sorry, @${userState["display-name"]}, but you are not a mod!`;

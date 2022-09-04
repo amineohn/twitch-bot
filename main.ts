@@ -1,10 +1,9 @@
 import Config from "./utils/config";
-// @ts-ignore
-import { onMessage } from "./events/onMessage";
-import { Disconnected } from "./events/disconnected";
+import { onMessage } from "@events/onMessage";
+import { Disconnected } from "@events/disconnected";
 
 import tmi from "tmi.js";
-import { Firebase } from "./libs/firebase";
+import { Firebase } from "@libs/firebase";
 const config = new Config();
 const client = new tmi.Client(config.account);
 
