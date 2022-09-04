@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ES2021", "DOM"],
+    "outDir": "dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "paths": {
+        "@/*": ["/*"],
+        "@events/*": ["events/*"],
+        "@utils/*": ["utils/*"],
+        "@interfaces/*": ["interfaces/*"],
+    },
+    "moduleResolution": "node",
+  }
+}
