@@ -1,8 +1,14 @@
+import {ChatUserstate, Client} from "tmi.js";
+
 export interface ICommand {
     name: string;
     description: string;
-    usage: string;
-    aliases: string[];
-    execute: (message: any, args: string[]) => void;
-    args: boolean;
+    userState?: ChatUserstate,
+    execute: (client: Client | null, args: string[]) => void;
+}
+export interface ListCommands {
+    name: string;
+    modOnly: boolean;
+    command: ICommand[];
+    execute: (client: Client | null, args: string[]) => void;
 }

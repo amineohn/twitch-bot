@@ -1,15 +1,15 @@
-import {ICommand} from "../interfaces/index";
+// @ts-ignore
+import { ICommand } from "@/interfaces";
+import { Client } from "tmi.js";
 
-const Ping: ICommand = () => {
-    return {
-        name: "ping",
-        description: "Ping!",
-        usage: "ping",
-        aliases: ["pong"],
-        execute: (message) => {
-            message.channel.send("Pong!");
-        },
-        args: false,
-    };
+const ping: ICommand = {
+    name: "ping",
+    description: "Ping!",
+    execute: (client: Client | null, args: string[]) => {
+        if (client === null)
+            return;
+
+        client.say(args[0], "Pong!").then(r => console.log(`* replied with "Pong!"`));
+    }
 }
-export default Ping;
+export default ping;

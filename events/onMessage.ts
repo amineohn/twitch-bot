@@ -1,6 +1,9 @@
 import tmi from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
 import Config from "../utils/config";
+import fs from "fs";
+// @ts-ignore
+import {ICommand, ListCommands} from "@/interfaces";
 const config = new Config();
 const client = new tmi.Client(config.account);
 
@@ -22,8 +25,23 @@ export const onMessage = async (
     console.log(`* got: command - "${command}", arguments: "${args}"`);
 
     let reply = "";
-
-    switch (command) {
+    type Command = {
+        name: string;
+        modOnly: boolean;
+        command: ICommand[];
+    } | string[];
+    const commands: Command = await fs.promises.readdir("./commands");
+    for (const commandFile of commands) {
+        const command: ListCommands = await import(`../commands/${commandFile}`);
+        if (command?.name === command) {
+            if (command.modOnly && !isMod) {
+                reply = `Sorry, @${userState["display-name"]}, but you are not a mod!`;
+            } else {
+                command.execute(client, args, userState);
+            }
+        }
+    }
+    /*switch (command) {
         case "ping":
             reply = "Pong!";
             break;
@@ -38,7 +56,7 @@ export const onMessage = async (
                 ? `Yes, @${userState["display-name"]}. You are a mod!`
                 : `No, @${userState["display-name"]}.`;
             break;
-    }
+    }*/
 
     if (reply === "" || typeof config.account["identity"] === "undefined") return;
 
