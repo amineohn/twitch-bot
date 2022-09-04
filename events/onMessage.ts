@@ -31,13 +31,14 @@ export const onMessage = async (
     for (const commandFile of commands) {
         const command: ListCommands = await import(`../commands/${commandFile}`);
         // @ts-ignore
-
-        if (command?.name === command) {
+        if (command.name === command) {
+            // @ts-ignore
             if (command.modOnly && !isMod) {
-                reply = `Sorry, @${userState["display-name"]}, but you are not a mod!`;
-            } else {
-                command.execute(client, args, userState);
+                reply = "You must be a moderator to use this command.";
+                break;
             }
+            // @ts-ignore
+            command.execute(client, args, userState);
         }
     }
     if (reply === "" || typeof config.account["identity"] === "undefined") return;

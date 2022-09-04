@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "start": "ts-node main.ts"
+    "start": "ts-node -r tsconfig-paths/register main.ts"
   },
   "author": "Amine Ouhani",
   "dependencies": {
@@ -17,6 +17,7 @@
     "@types/tmi.js": "^1.8.1",
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19",
+    "tsconfig-paths": "^4.1.0",
     "typescript": "^4.8.2"
   }
 }
