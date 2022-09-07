@@ -4,10 +4,6 @@ import "firebase/compat/firestore";
 import "firebase/compat/functions";
 export class Firebase {
     constructor() {
-        this.init();
-    }
-
-    init() {
         firebase.initializeApp({
             apiKey: process.env.API_KEY,
             authDomain: process.env.AUTH_DOMAIN,
@@ -19,37 +15,22 @@ export class Firebase {
         console.log("Initialize Firebase app(s): %d", firebase.apps.length);
     }
 
-    user() {
-        return firebase.auth().currentUser;
-    }
-
-    firebase() {
-        return firebase;
-    }
-
-    database() {
-        return firebase.database();
-    }
-
-    functions() {
-        return firebase.functions();
-    }
-
     collection(collection: string) {
-        return this.firebase().firestore().collection(collection);
+        return firebase.firestore().collection(collection);
     }
-    async update(collection: string, documentPath: string, data: any) {
+
+    async update(collection: string, documentPath: string, data: any): Promise<void> {
         const collectionRef = this.collection(collection);
         const documentRef = collectionRef.doc(documentPath);
         await documentRef.update(data);
     }
 
-    async create(collection: string, data: any) {
+    async create(collection: string, data: any): Promise<void> {
         const collectionRef = this.collection(collection);
         await collectionRef.add(data);
     }
 
-    async delete(collection: string, documentPath: string) {
+    async delete(collection: string, documentPath: string): Promise<void> {
         const collectionRef = this.collection(collection);
 
         const documentRef = collectionRef.doc(documentPath);
