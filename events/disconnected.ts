@@ -1,29 +1,19 @@
-import { Client } from "tmi.js";
-export const Disconnected = async (client?: Client | null, message?: string) => {
-    switch(message) {
-        case "Connection closed":
-            message += " - Connection closed by the server";
-            break;
-        case "Connection timed out":
-            message += " - Connection timed out - reconnecting...";
-            break;
-        case "Connection error":
-            message += " - Connection error - reconnecting...";
-            break;
-        case "Connection failed":
-            message += " - Connection failed - reconnecting...";
-            break;
-        case "Connection refused":
-            message += " - Connection refused - reconnecting...";
-            break;
-        case undefined:
-            message = "Disconnected - reconnecting...";
-            break;
-    }
+import {Client, Options} from "tmi.js";
+import Config from "@utils/config";
+export const Disconnected = async (
+    reason: string,
+) => {
+    const config = new Config();
+    const client = new Client(<Options>config.account);
+
     try {
-        console.log("* disconnected for this reason: " + message);
+        console.log(`* disconnected: ${reason}`);
+        await client.connect();
+        console.log(`* reconnected: ${reason}`);
+
     }
     catch (e) {
         console.error(e);
+        await client.disconnect();
     }
 }
