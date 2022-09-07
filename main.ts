@@ -4,8 +4,13 @@ import { Disconnected } from "@events/disconnected";
 
 import tmi from "tmi.js";
 import { Firebase } from "@libs/firebase";
+import * as dotenv from "dotenv";
+import {resolve} from "path";
 const config = new Config();
 const client = new tmi.Client(config.account);
+dotenv.config({
+  path: resolve(__dirname, "../.env"),
+});
 
 client.on("connected", (address: string, port: number) => {
   console.log(`* connected to: address - ${address}, port - ${port}`);
