@@ -1,15 +1,24 @@
 import firebase from "firebase/compat/app";
 export class Firebase {
     constructor() {
-        firebase.initializeApp({
-            apiKey: process.env.API_KEY,
-            authDomain: process.env.AUTH_DOMAIN,
-            projectId: process.env.PROJECT_ID,
-            storageBucket: process.env.STORAGE_BUCKET,
-            messagingSenderId: process.env.MESSAGING_SENDER_ID,
-            appId: process.env.APP_ID,
-        });
-        console.log("Initialize Firebase app(s): %d", firebase.apps.length);
+        this.initialize();
+    }
+
+    initialize() {
+        try {
+            firebase.initializeApp({
+                apiKey: process.env.API_KEY,
+                authDomain: process.env.AUTH_DOMAIN,
+                projectId: process.env.PROJECT_ID,
+                storageBucket: process.env.STORAGE_BUCKET,
+                messagingSenderId: process.env.MESSAGING_SENDER_ID,
+                appId: process.env.APP_ID,
+            });
+            console.log("Initialize Firebase app(s): %d", firebase.apps.length);
+        }
+        catch (error) {
+            console.error(error);
+        }
     }
 
     collection(collection: string) {

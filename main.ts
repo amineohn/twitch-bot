@@ -22,7 +22,7 @@ client.on("connected", OnConnect);
 client.on("join", OnJoin);
 
 const firebase = new Firebase();
-firebase.init();
+firebase.initialize();
 
 client.connect()
     .then(r => console.log(`* connected: ${r}`))
