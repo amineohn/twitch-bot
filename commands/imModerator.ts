@@ -12,6 +12,7 @@ const imModerator: ICommand = {
         const moderator = isModerator
             ? `Yes, @${userState["display-name"]}. You are a mod!`
             : `No, @${userState["display-name"]}.`;
+
         client.say(args[0], moderator).then(r => console.log(`* replied with "${moderator}"`));
     }
 }
