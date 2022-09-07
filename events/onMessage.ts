@@ -1,4 +1,4 @@
-import tmi from "tmi.js";
+import tmi, {Options} from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
 import Config from "../utils/config";
 import fs from "fs";
@@ -7,7 +7,7 @@ import {ICommand, ListCommands} from "@/interfaces";
 // @ts-ignore
 import {Command} from "@/types";
 const config = new Config();
-const client = new tmi.Client(config.account);
+const client = new tmi.Client(<Options>config.account);
 
 export const onMessage = async (
     channel: string,
@@ -41,7 +41,7 @@ export const onMessage = async (
             command.execute(client, args, userState);
         }
     }
-    if (reply === "" || typeof config.account["identity"] === "undefined") return;
+    if (reply === "" || typeof <Options>config.account?.identity === "undefined") return;
 
     await client.say(channel, reply);
     console.log(`* replied with "${reply}"`);
