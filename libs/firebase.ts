@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 export class Firebase {
     constructor() {
-        this.initialize();
+
     }
 
     initialize() {
