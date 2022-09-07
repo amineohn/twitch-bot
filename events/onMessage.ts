@@ -2,7 +2,7 @@ import { Client, Options } from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
 import Config from "../utils/config";
 import fs from "fs";
-import { ListCommands } from "@/types";
+import { Command } from "@/types";
 
 const config = new Config();
 const client = new Client(<Options>config.account);
@@ -26,7 +26,7 @@ export const onMessage = async (
     let reply = "";
     const commands: string[] = await fs.promises.readdir("./commands");
     for (const commandFile of commands) {
-        const command: ListCommands = await import(`../commands/${commandFile}`);
+        const command: Command = await import(`../commands/${commandFile}`);
         const commandName = commandFile.split(".")[0];
         if (commandName === command.name) {
             if (command.modOnly && !isMod) {

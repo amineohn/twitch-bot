@@ -1,7 +1,7 @@
 import { ICommand } from "@/interfaces";
 import { ChatUserstate, Client } from "tmi.js";
 
-export type ListCommands = {
+export type Command = {
     name: string | undefined;
     modOnly: boolean | undefined;
     command: ICommand[];

@@ -1,16 +1,22 @@
 import type { Options } from "tmi.js";
+import {Helper} from "@utils/helper";
 
 class Config {
 
   public account: Options | undefined;
   public identifier: string = "!";
+  public helper: Helper = new Helper();
 
   constructor() {
-    if (typeof process.env.TWITCH_USERNAME === "undefined"
-        || typeof process.env.TWITCH_OAUTH_TOKEN === "undefined"
-        || typeof process.env.TWITCH_CHANNELS === "undefined") {
-      throw new Error("TWITCH_USERNAME or TWITCH_OAUTH or TWITCH_CHANNELS is undefined");
+    if (!this.helper.isEmptyObject(process.env.TWITCH_USERNAME) &&
+        !this.helper.isEmptyObject(process.env.TWITCH_OAUTH_TOKEN) &&
+        !this.helper.isEmptyObject(process.env.TWITCH_CHANNEL)) {
+      console.error("Missing environment variables in .env file. Please check the README.md for more information." + "" +
+       "\n" + "TWITCH_USERNAME" + "" +
+       "\n" + "TWITCH_OAUTH_TOKEN" + "" +
+       "\n" + "TWITCH_CHANNEL");
     }
+
     this.account = {
       identity: {
         username: process.env.TWITCH_USERNAME,
