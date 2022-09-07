@@ -5,5 +5,5 @@ export const OnJoin = async (
 ) => {
     if (self) return;
 
-    console.log(`* ${username} joined ${channel}`);
+    console.log(`* (${username}) joined (${channel})`);
 }

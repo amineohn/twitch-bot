@@ -7,9 +7,9 @@ export const OnDisconnected = async (
     const client = new Client(<Options>config.account);
 
     try {
-        console.log(`* disconnected: ${reason}`);
+        console.log(`* disconnected: (${reason})`);
         await client.connect();
-        console.log(`* reconnected: ${reason}`);
+        console.log(`* reconnected: (${reason})`);
     }
     catch (e) {
         console.error(e);
