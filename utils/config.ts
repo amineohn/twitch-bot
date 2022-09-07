@@ -1,7 +1,10 @@
 import type { Options } from "tmi.js";
 
 class Config {
-  account: Options | undefined;
+
+  public account: Options | undefined;
+  public identifier: string = "!";
+
   constructor() {
     if (typeof process.env.TWITCH_USERNAME === "undefined"
         || typeof process.env.TWITCH_OAUTH_TOKEN === "undefined"
@@ -15,10 +18,7 @@ class Config {
       },
       channels: [process.env.TWITCH_CHANNELS ?? ""],
     };
-  }
-
-  public identifier(): string {
-    return "!"
+    this.identifier = process.env.IDENTIFIER ?? "!";
   }
 
 }

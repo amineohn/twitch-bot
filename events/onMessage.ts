@@ -1,11 +1,11 @@
-import tmi, {Client, Options} from "tmi.js";
+import { Client, Options } from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
 import Config from "../utils/config";
 import fs from "fs";
-import {ICommand} from "@/interfaces";
 import { ListCommands } from "@/types";
+
 const config = new Config();
-const client = new tmi.Client(<Options>config.account);
+const client = new Client(<Options>config.account);
 
 export const onMessage = async (
     channel: string,
@@ -13,7 +13,7 @@ export const onMessage = async (
     message: string,
     self: boolean
 ) => {
-    if (self || !message.startsWith(config.identifier())) return;
+    if (self || !message.startsWith(config.identifier)) return;
     message = message.slice(1);
 
     const words = message.match(/\S+/g) ?? [];
