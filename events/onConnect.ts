@@ -1,4 +1,4 @@
-export const Connected = async (
+export const OnConnect = async (
     address: string,
     port: number,
 ) => {

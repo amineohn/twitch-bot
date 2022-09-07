@@ -1,6 +1,6 @@
 import {Client, Options} from "tmi.js";
 import Config from "@utils/config";
-export const Disconnected = async (
+export const OnDisconnected = async (
     reason: string,
 ) => {
     const config = new Config();

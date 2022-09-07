@@ -5,9 +5,9 @@ import * as dotenv from "dotenv";
 import { resolve } from "path";
 
 import { onMessage } from "@events/onMessage";
-import { Disconnected } from "@events/disconnected";
-import { Connected } from "@events/connected";
-import { Join } from "@events/join";
+import { OnDisconnected } from "@events/onDisconnected";
+import { OnConnect } from "@events/onConnect";
+import { OnJoin } from "@events/onJoin";
 
 const config = new Config();
 const client = new Client(<Options>config.account);
@@ -17,9 +17,9 @@ dotenv.config({
 });
 
 client.on("message", onMessage);
-client.on("disconnected", Disconnected);
-client.on("connected", Connected);
-client.on("join", Join);
+client.on("disconnected", OnDisconnected);
+client.on("connected", OnConnect);
+client.on("join", OnJoin);
 
 const firebase = new Firebase();
 firebase.init();
