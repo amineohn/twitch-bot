@@ -1,10 +1,8 @@
 import type { Options } from "tmi.js";
 
 class Config {
+  private account: Options | undefined;
   constructor() {
-    this.loadCredentials();
-  }
-  public loadCredentials() {
     this.account = {
       identity: {
         username: process.env.TWITCH_USERNAME,
@@ -13,14 +11,10 @@ class Config {
       channels: [process.env.TWITCH_CHANNEL ?? ""],
     };
   }
-  public account: Options = {
-    identity: {
-      username: process.env.TWITCH_USERNAME,
-      password: process.env.TWITCH_OAUTH_TOKEN,
-    },
-    channels: [process.env.TWITCH_CHANNEL ?? ""],
-  };
 
-    public readonly identifier = "!";
+  public identifier(): string {
+    return "!"
+  }
+
 }
 export default Config;

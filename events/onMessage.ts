@@ -15,7 +15,7 @@ export const onMessage = async (
     message: string,
     self: boolean
 ) => {
-    if (self || !message.startsWith(config.identifier)) return;
+    if (self || !message.startsWith(config.identifier())) return;
     message = message.slice(1);
 
     const words = message.match(/\S+/g) ?? [];

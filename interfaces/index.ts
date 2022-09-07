@@ -4,7 +4,7 @@ export interface ICommand {
     name: string;
     description: string;
     userState?: ChatUserstate,
-    execute: (client: Client | null, args: string[]) => void;
+    execute: (client: Client | null, args: string[], userState?: ChatUserstate) => void;
 }
 export interface ListCommands {
     name: string;
