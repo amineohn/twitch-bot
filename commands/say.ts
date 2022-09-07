@@ -1,4 +1,3 @@
-// @ts-ignore
 import { ICommand } from "@/interfaces";
 import { Client } from "tmi.js";
 

@@ -10,7 +10,6 @@ export const Disconnected = async (
         console.log(`* disconnected: ${reason}`);
         await client.connect();
         console.log(`* reconnected: ${reason}`);
-
     }
     catch (e) {
         console.error(e);

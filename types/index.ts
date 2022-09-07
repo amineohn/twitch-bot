@@ -1,12 +1,5 @@
-// @ts-ignore
-import {ICommand} from "@/interfaces";
-import {ChatUserstate, Client} from "tmi.js";
-
-export type Command = {
-    name: string;
-    modOnly: boolean;
-    command: ICommand[];
-};
+import { ICommand } from "@/interfaces";
+import { ChatUserstate, Client } from "tmi.js";
 
 export type ListCommands = {
     name: string | undefined;

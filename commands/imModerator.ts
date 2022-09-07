@@ -1,4 +1,3 @@
-// @ts-ignore
 import { ICommand } from "@/interfaces";
 import { ChatUserstate, Client } from "tmi.js";
 
