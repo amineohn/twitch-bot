@@ -1,11 +1,9 @@
-import tmi, {Options} from "tmi.js";
+import tmi, {Client, Options} from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
 import Config from "../utils/config";
 import fs from "fs";
-// @ts-ignore
-import {ICommand, ListCommands} from "@/interfaces";
-// @ts-ignore
-import {Command} from "@/types";
+import {ICommand} from "@/interfaces";
+import { ListCommands } from "@/types";
 const config = new Config();
 const client = new tmi.Client(<Options>config.account);
 
@@ -25,19 +23,16 @@ export const onMessage = async (
     const isMod = userState.mod || userState.username === channel.slice(1);
 
     console.log(`* got: command - "${command}", arguments: "${args}"`);
-
     let reply = "";
-    const commands: Command = await fs.promises.readdir("./commands");
+    const commands: string[] = await fs.promises.readdir("./commands");
     for (const commandFile of commands) {
         const command: ListCommands = await import(`../commands/${commandFile}`);
-        // @ts-ignore
-        if (command.name === command) {
-            // @ts-ignore
+        const commandName = commandFile.split(".")[0];
+        if (commandName === command.name) {
             if (command.modOnly && !isMod) {
                 reply = "You must be a moderator to use this command.";
                 break;
             }
-            // @ts-ignore
             command.execute(client, args, userState);
         }
     }

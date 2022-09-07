@@ -6,9 +6,3 @@ export interface ICommand {
     userState?: ChatUserstate,
     execute: (client: Client | null, args: string[], userState: ChatUserstate) => void;
 }
-export interface ListCommands {
-    name: string;
-    modOnly: boolean;
-    command: ICommand[];
-    execute: (client: Client | null, args: string[], userState?: ChatUserstate) => void;
-}
