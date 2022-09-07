@@ -1,18 +1,19 @@
 import {Client, Options} from "tmi.js";
 import Config from "@utils/config";
+import {Loggers} from "@utils/logger";
 export const OnDisconnected = async (
     reason: string,
 ) => {
     const config = new Config();
     const client = new Client(<Options>config.account);
-
+    const logger = new Loggers();
     try {
-        console.log(`* disconnected: (${reason})`);
+        await logger.error(`* disconnected -> (${reason})`);
         await client.connect();
-        console.log(`* reconnected: (${reason})`);
+        await logger.debug(`* reconnected -> (${reason})`);
     }
     catch (e) {
-        console.error(e);
+        await logger.error(`* error -> (${e})`);
         await client.disconnect();
     }
 }

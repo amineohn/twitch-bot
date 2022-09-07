@@ -1,9 +1,11 @@
+import {Loggers} from "@utils/logger";
+
 export const OnJoin = async (
     channel: string,
     username: string,
     self: boolean,
 ) => {
     if (self) return;
-
-    console.log(`* (${username}) joined (${channel})`);
+    const logger = new Loggers();
+    await logger.warn(`* (${username}) joined -> (${channel})`);
 }

@@ -1,6 +1,9 @@
+import {Loggers} from "@utils/logger";
+
 export const OnConnect = async (
     address: string,
     port: number,
 ) => {
-    console.log(`* connected to: address -> (${address}), port -> (${port})`);
+    const logger = new Loggers();
+    await logger.warn(`* connected to: address -> (${address}), port -> (${port})`);
 }
