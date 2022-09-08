@@ -9,8 +9,11 @@ const imModerator: ICommand = {
     permission: Permission.MOD,
     execute: (client: Client | null, args: string[], permission: Permission, logger: Loggers, userState: ChatUserstate) => {
 
-        if(permission === Permission.MOD)
+        if (permission !== Permission.MOD) {
+            logger.warn(`* ${userState.username} tried to use the command "imModerator" but doesn't have the permission to do so!`)
+                .then(r => client?.say(args[0], `@${userState.username} you don't have the permission to use this command!`));
             return;
+        }
 
         if (client === null)
             return;
