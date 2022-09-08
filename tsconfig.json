@@ -15,7 +15,7 @@
     "paths": {
         "@/*": ["*"],
         "@events/*": ["events/*"],
-        "@utils/*": ["utils/*"],
+        "@repositories/*": ["repositories/*"],
         "@interfaces/*": ["interfaces/*"],
         "@commands/*": ["commands/*"],
         "@libs/*": ["libs/*"],

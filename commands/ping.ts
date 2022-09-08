@@ -1,6 +1,6 @@
 import { ICommand } from "@/interfaces";
 import { Client } from "tmi.js";
-import { Loggers } from "@utils/logger";
+import { Loggers } from "@/repositories/logger";
 
 const ping: ICommand = {
     name: "ping",

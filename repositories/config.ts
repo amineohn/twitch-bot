@@ -1,5 +1,5 @@
 import type { Options } from "tmi.js";
-import {Helper} from "@utils/helper";
+import {Helper} from ".//helper";
 
 class Config {
 

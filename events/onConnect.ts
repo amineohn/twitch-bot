@@ -1,4 +1,4 @@
-import {Loggers} from "@utils/logger";
+import {Loggers} from "@/repositories/logger";
 
 export const OnConnect = async (
     address: string,

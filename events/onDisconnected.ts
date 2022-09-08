@@ -1,6 +1,6 @@
 import {Client, Options} from "tmi.js";
-import Config from "@utils/config";
-import {Loggers} from "@utils/logger";
+import Config from "@/repositories/config";
+import {Loggers} from "@/repositories/logger";
 export const OnDisconnected = async (
     reason: string,
 ) => {

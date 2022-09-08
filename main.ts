@@ -1,4 +1,4 @@
-import Config from "./utils/config";
+import Config from "./repositories/config";
 import { Client, Options } from "tmi.js";
 import { Firebase } from "@libs/firebase";
 import * as dotenv from "dotenv";

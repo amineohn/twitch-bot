@@ -1,9 +1,9 @@
 import { Client, Options } from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
-import Config from "../utils/config";
+import Config from "../repositories/config";
 import fs from "fs";
 import { Command } from "@/types";
-import {Loggers} from "@utils/logger";
+import {Loggers} from "@/repositories/logger";
 
 const config = new Config();
 const client = new Client(<Options>config.account);

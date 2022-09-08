@@ -1,5 +1,5 @@
 import {ChatUserstate, Client} from "tmi.js";
-import {Loggers} from "@utils/logger";
+import {Loggers} from "@/repositories/logger";
 
 export interface ICommand {
     name: string
