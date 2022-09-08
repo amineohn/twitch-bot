@@ -2,7 +2,6 @@ import type { Options } from "tmi.js";
 import {Helper} from ".//helper";
 
 class Config {
-
   public account: Options | undefined;
   public identifier: string = "!";
   public helper: Helper = new Helper();
