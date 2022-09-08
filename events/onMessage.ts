@@ -14,7 +14,10 @@ export const onMessage = async (
     message: string,
     self: boolean
 ) => {
-    if (self || !message.startsWith(config.identifier)) return;
+
+    if (self || !message.startsWith(config.identifier))
+        return;
+
     message = message.slice(1);
     const logger = new Loggers();
     const words = message.match(/\S+/g) ?? [];
@@ -37,7 +40,9 @@ export const onMessage = async (
             command.execute(client, args, userState);
         }
     }
-    if (reply === "" || typeof <Options>config.account?.identity === "undefined") return;
+
+    if (reply === "" || typeof <Options>config.account?.identity === "undefined")
+        return;
 
     await client.say(channel, reply);
     await logger.debug(`* sent: "${reply}"`);

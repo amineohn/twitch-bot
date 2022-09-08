@@ -5,6 +5,7 @@ const Say: ICommand = {
     name: "say",
     description: "Say something!",
     execute: (client: Client | null, args: string[]) => {
+
         if (client === null)
             return;
 
