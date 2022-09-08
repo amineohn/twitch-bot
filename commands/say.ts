@@ -1,11 +1,16 @@
-import { ICommand } from "@/interfaces";
-import { Client } from "tmi.js";
-import { Loggers } from "@/repositories/logger";
+import {ICommand} from "@/interfaces";
+import {Client} from "tmi.js";
+import {Loggers} from "@/repositories/logger";
+import {Permission} from "@/handler/CommandHandler";
 
 const Say: ICommand = {
     name: "say",
     description: "Say something!",
-    execute: (client: Client | null, args: string[], logger: Loggers) => {
+    permission: Permission.MOD,
+    execute: (client: Client | null, args: string[], permission: Permission, logger: Loggers) => {
+
+        if (permission === Permission.MOD)
+            return;
 
         if (client === null)
             return;

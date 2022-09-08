@@ -18,13 +18,13 @@ export class CommandHandler {
         if (!cmd) {
             return;
         }
-        if (cmd.permission === 'mod' && !tags.mod) {
+        if (cmd.permission === Permission.MOD && !tags.mod) {
             return;
         }
-        if (cmd.permission === 'subscriber' && !tags.subscriber) {
+        if (cmd.permission === Permission.SUBSCRIBER && !tags.subscriber) {
             return;
         }
-        if (cmd.permission === 'broadcaster' && tags.username !== channel.slice(1)) {
+        if (cmd.permission === Permission.BROADCASTER && tags.username !== channel.slice(1)) {
             return;
         }
         cmd.execute(this.client, args, tags);
@@ -35,4 +35,10 @@ export class CommandHandler {
     public has(command: string) {
         return this.commands.some((cmd) => cmd.name === command);
     }
+}
+
+export enum Permission {
+    MOD = 'mod',
+    SUBSCRIBER = 'subscriber',
+    BROADCASTER = 'broadcaster',
 }

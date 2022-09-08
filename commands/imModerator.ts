@@ -1,11 +1,16 @@
-import { ICommand } from "@/interfaces";
-import { ChatUserstate, Client } from "tmi.js";
-import { Loggers } from "@/repositories/logger";
+import {ICommand} from "@/interfaces";
+import {ChatUserstate, Client} from "tmi.js";
+import {Loggers} from "@/repositories/logger";
+import {Permission} from "@/handler/CommandHandler";
 
 const imModerator: ICommand = {
     name: "imModerator",
     description: "I'm a moderator!",
-    execute: (client: Client | null, args: string[], logger: Loggers, userState: ChatUserstate) => {
+    permission: Permission.MOD,
+    execute: (client: Client | null, args: string[], permission: Permission, logger: Loggers, userState: ChatUserstate) => {
+
+        if(permission === Permission.MOD)
+            return;
 
         if (client === null)
             return;

@@ -1,11 +1,16 @@
-import { ICommand } from "@/interfaces";
-import { Client } from "tmi.js";
-import { Loggers } from "@/repositories/logger";
+import {ICommand} from "@/interfaces";
+import {Client} from "tmi.js";
+import {Loggers} from "@/repositories/logger";
+import {Permission} from "@/handler/CommandHandler";
 
 const ping: ICommand = {
     name: "ping",
     description: "Ping!",
-    execute: (client: Client | null, args: string[], logger: Loggers) => {
+    permission: Permission.SUBSCRIBER,
+    execute: (client: Client | null, args: string[], permission: Permission,  logger: Loggers) => {
+
+        if(permission === Permission.SUBSCRIBER)
+            return;
 
         if (client === null)
             return;
