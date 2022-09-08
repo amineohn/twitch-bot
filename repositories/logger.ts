@@ -21,6 +21,8 @@ export class Loggers {
         this.logger.info(message);
     }
     public async debug(message: string) {
-        this.logger.magenta(message);
+        if(process.env.DEBUG) {
+            this.logger.warn(`DEBUG: ${message}`)
+        }
     }
 }

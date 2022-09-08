@@ -4,6 +4,7 @@ import Config from "../repositories/config";
 import fs from "fs";
 import { Command } from "@/types";
 import {Loggers} from "@/repositories/logger";
+import {CommandHandler} from "@/handler/CommandHandler";
 
 const config = new Config();
 const client = new Client(<Options>config.account);
@@ -28,18 +29,17 @@ export const onMessage = async (
 
     await logger.debug(`* got: command - "${command}", arguments: "${args}"`);
     let reply = "";
-    const commands: string[] = await fs.promises.readdir("./commands");
-    for (const commandFile of commands) {
-        const command: Command = await import(`../commands/${commandFile}`);
-        const commandName = commandFile.split(".")[0];
-        if (commandName === command.name) {
-            if (command.modOnly && !isMod) {
-                reply = "You must be a moderator to use this command.";
-                break;
-            }
-            command.execute(client, args, userState);
+
+    const commandHandler = new CommandHandler(client);
+    const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.ts'));
+    for (const file of commandFiles) {
+        const command = require(`../commands/${file}`);
+        await commandHandler.registerCommand(command);
+        if (commandHandler.has(command.name)) {
+            await commandHandler.handle(message, channel, userState);
         }
     }
+
 
     if (reply === "" || typeof <Options>config.account?.identity === "undefined")
         return;
