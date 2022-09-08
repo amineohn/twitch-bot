@@ -5,6 +5,7 @@ const ping: ICommand = {
     name: "ping",
     description: "Ping!",
     execute: (client: Client | null, args: string[]) => {
+
         if (client === null)
             return;
 
