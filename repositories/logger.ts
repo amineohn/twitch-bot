@@ -3,13 +3,13 @@ import {Logger} from "logger-colors";
 export class Loggers {
     private centerColumns = 50;
     private operationId = 'TWITCH';
+    private isDebug = process.env.DEBUG ? true : false;
+
     public logger = new Logger({
         operationId: this.operationId,
         centerColumns: this.centerColumns,
     });
-    constructor() {
-        // ...
-    }
+
     public async log(message: string, center?: boolean) {
         await this.logger.cyan(message, center);
     }
@@ -23,7 +23,7 @@ export class Loggers {
         await this.logger.info(message, center);
     }
     public async debug(message: string, center?: boolean) {
-        if(process.env.DEBUG) {
+        if(this.isDebug) {
             await this.logger.warn(`DEBUG: ${message}`, center)
         }
     }
