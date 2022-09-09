@@ -16,19 +16,52 @@ export class Loggers {
     }
 
     public async log(message: string, center?: boolean) {
-        this.logger.cyan(message, center);
+        new Promise((resolve, reject) => {
+            try {
+                this.logger.cyan(message, center);
+                resolve(true);
+            }
+            catch (error) {
+                reject(false);
+            }
+        });
     }
 
     public async error(message: string, center?: boolean) {
-        this.logger.error(message, center);
+        new Promise((resolve, reject) => {
+            try {
+                this.logger.error(message, center);
+                resolve(true);
+            }
+            catch (error) {
+                reject(false);
+            }
+            reject(false);
+        });
     }
 
     public async warn(message: string, center?: boolean) {
-        this.logger.warn(message, center);
+        new Promise((resolve, reject) => {
+            try {
+                this.logger.warn(message, center);
+                resolve(true);
+            }
+            catch (error) {
+                reject(false);
+            }
+        });
     }
 
     public async info(message: string, center?: boolean) {
-        this.logger.info(message, center);
+        new Promise((resolve, reject) => {
+            try {
+                this.logger.info(message, center);
+                resolve(true);
+            }
+            catch (error) {
+                reject(false);
+            }
+        });
     }
 
     public async debug(message: string, center?: boolean) {
