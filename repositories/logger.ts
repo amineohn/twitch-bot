@@ -1,30 +1,43 @@
-import {Logger} from "logger-colors";
+import { Logger, LoggerOptions } from "logger-colors";
 
 export class Loggers {
+
     private centerColumns = 50;
     private operationId = 'TWITCH';
-    private isDebug = process.env.DEBUG ? true : false;
+    private isDebug = !!process.env.DEBUG;
+    private options?: LoggerOptions
+    private logger = new Logger(this.options);
 
-    public logger = new Logger({
-        operationId: this.operationId,
-        centerColumns: this.centerColumns,
-    });
+    constructor() {
+        this.logger = new Logger({
+            centerColumns: this.centerColumns,
+            operationId: this.operationId,
+        });
+    }
 
     public async log(message: string, center?: boolean) {
-        await this.logger.cyan(message, center);
+        this.logger.cyan(message, center);
     }
+
     public async error(message: string, center?: boolean) {
-        await this.logger.error(message, center);
+        this.logger.error(message, center);
     }
+
     public async warn(message: string, center?: boolean) {
-        await this.logger.warn(message, center);
+        this.logger.warn(message, center);
     }
+
     public async info(message: string, center?: boolean) {
-        await this.logger.info(message, center);
+        this.logger.info(message, center);
     }
+
     public async debug(message: string, center?: boolean) {
-        if(this.isDebug) {
-            await this.logger.warn(`DEBUG: ${message}`, center)
-        }
+        new Promise((resolve, reject) => {
+            if (this.isDebug) {
+                this.logger.warn(`DEBUG: ${message}`, center);
+                resolve(true);
+            }
+            reject(false);
+        });
     }
 }

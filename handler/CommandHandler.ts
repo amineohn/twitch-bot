@@ -39,7 +39,7 @@ export class CommandHandler {
         this.commands.push(command);
     }
     public has(command: string) {
-        return this.commands.some((cmd) => cmd.name === command);
+        return this.commands.some((cmd: Command) => cmd.name === command);
     }
 }
 
