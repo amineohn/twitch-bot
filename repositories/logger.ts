@@ -1,9 +1,11 @@
 import {Logger} from "logger-colors";
 
 export class Loggers {
+    private centerColumns = 50;
+    private operationId = 'TWITCH';
     public logger = new Logger({
-        operationId: 'TWITCH',
-        centerColumns: 50,
+        operationId: this.operationId,
+        centerColumns: this.centerColumns,
     });
     constructor() {
         // ...
