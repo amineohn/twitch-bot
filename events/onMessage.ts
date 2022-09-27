@@ -1,6 +1,6 @@
 import { Client, Options } from "tmi.js";
 import type { ChatUserstate } from "tmi.js";
-import Config from "../repositories/config";
+import Config from "@repositories/config";
 import fs from "fs";
 import { Loggers } from "@/repositories/logger";
 import { CommandHandler } from "@/handler/CommandHandler";
