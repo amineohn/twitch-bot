@@ -24,7 +24,7 @@ client.on("join", OnJoin);
 const firebase = new Firebase();
 firebase.initialize();
 
-client.connect()
-    .then(r => console.log(`* connected: ${r}`))
-    .catch(e => console.error(e));
-
+client
+  .connect()
+  .then((r) => console.log(`* connected: ${r}`))
+  .catch((e) => console.error(e));
